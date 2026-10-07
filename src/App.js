@@ -11,10 +11,10 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            <Route path={"/"} element={<Home/>}/>
+            <Route path={"/home"} element={<Home/>}/>
             <Route path={"/create"} element={<CreatePost/>}/>
-            <Route path={"/post/:name"} element={<PostDetail/>}/>
-            <Route path={"/post/edit/:name"} element={<PostEdit/>}/>
+            <Route path={"/post/:id"} element={<PostDetail/>}/>
+            <Route path={"/post/edit/:id"} element={<PostEdit/>}/>
           </Routes>
       {/*<header className="App-header">*/}
       {/*  <img src={logo} className="App-logo" alt="logo" />*/}
