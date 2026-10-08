@@ -23,7 +23,7 @@ let CreatePost = () => {
 
     const onClickSubmit = ()=>{
         axios.post(`${process.env.REACT_APP_API_URL}/posts`,
-            formData )
+            formData )         // env.REACT_APP_API_URLは http://localhost:8080/api
             .then(
                 res=> {
                 console.log(res.data);
