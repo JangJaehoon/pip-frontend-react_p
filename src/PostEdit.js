@@ -35,13 +35,25 @@ let PostEdit = () =>{
                      <textarea id={"content"} value={content} onChange={(e) => setContent(e.target.value)}
                                placeholder={"Enter Project"}/>
                  </div>
+
+                 {/*<div className={"form-group"}>*/}
+                 {/*    <label htmlFor={"empID"}>Project</label>*/}
+                 {/*    <textarea id={"empID"} value={empID} onChange={(e) => setContent(e.target.value)}*/}
+                 {/*              placeholder={"Enter Employee ID"}/>*/}
+                 {/*</div>*/}
+
+                 {/*<div className={"form-group"}>*/}
+                 {/*    <label htmlFor={"info"}>Project</label>*/}
+                 {/*    <textarea id={"info"} value={info} onChange={(e) => setContent(e.target.value)}*/}
+                 {/*              placeholder={"Enter Other Information"}/>*/}
+                 {/*</div>*/}
+
                  <div className={"button-group"}>
                      <button type={"submit"} className={"submit-button"} >
                          Editing Completed
                      </button>
                      <Link to={`/post/${id}` } className={"cancel-button"}>Cancel</Link>
                  </div>
-
 
              </form>
         </div>

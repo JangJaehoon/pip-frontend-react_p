@@ -27,7 +27,7 @@ let Home = () => {
 
     return (
         <div className={"home-container"}>
-            <h1 className={"home-title"}>List of Posting</h1>
+            <h1 className={"home-title"}>一覧</h1>
             <div className={"posts-list"}>
                 {
                     currentPosts.map(post => (
@@ -58,7 +58,7 @@ let Home = () => {
                 }
             </div>
 
-            <Link to={"/create"} className={"create-link"}>Writing Post</Link>
+            <Link to={"/create"} className={"create-link"}>登録</Link>
         </div>
     );
 }

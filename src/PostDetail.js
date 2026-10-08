@@ -8,6 +8,7 @@ let PostDetail = () => {
         id,
         title: `The name of ${id}`,
         content: `The project of ${id}`,
+        // empID: `EmployId of ${id}`,
         // info: `The other information of ${id}`
     };
 
@@ -20,7 +21,8 @@ let PostDetail = () => {
         <div className={"post-detail-container"}>
             <h1 className={"post-detail-title"}>{post.title}</h1>
             <p className={"post-detail-content"}>{post.content}</p>
-            <p className={"post-detail-content"}>{post.info}</p>
+            {/*<p className={"post-detail-empID"}>{post.empID}</p>*/}
+            {/*<p className={"post-detail-info"}>{post.info}</p>*/}
             <div className={"button-group"}>
                 <Link to={`/posts/edit/${id}`} className={"edit-button"}>
                     Edit
