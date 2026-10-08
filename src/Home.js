@@ -29,7 +29,7 @@ let Home = () => {
     // useEffect : 関数型コンポーネントからside effectを処理するHook
     useEffect(() => {
         getPostList(); // ページィング処理関数
-    },[currentPage] );
+    },[currentPage]);　// 現在のページを表示
 
     const pageNumbers = Array.from(
         {length: totalPages},
