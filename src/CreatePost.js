@@ -12,7 +12,7 @@ let CreatePost = () => {
         content: "",
         // empID: "",
         // info: ""
-    });
+    }); // useStateは状態管理
 
     let onChangeFormData = (e) => {
         setFormData({
@@ -43,14 +43,14 @@ let CreatePost = () => {
                     <input id={"title"} type={"text"}
                            name={"title"}
                            onChange={onChangeFormData}
-                           placeholder={"Enter Name"}/>
+                           placeholder={"名前を入力してください。"}/>
                 </div>
                 <div className={"form-group"}>
                     <label htmlFor={"content"}>プロジェクト</label>
                     <textarea id={"content"}
                               name={"content"}
                               onChange={onChangeFormData}
-                              placeholder={"Enter Project"}/>
+                              placeholder={"参加中のプロジェクトを入力してください。"}/>
                 </div>
 
                 {/*<div className={"form-group"}>*/}
@@ -72,7 +72,7 @@ let CreatePost = () => {
                 <button type="submit"
                         className={"submit-button"}
                         onClick={onClickSubmit}
-                        >Posting</button>
+                        >登録</button>
             </form>
         </div>
     );

@@ -6,6 +6,8 @@ import axios from "axios";
 let Home = () => {
 
     const[posts, setPosts] = useState([]);
+
+    // The start of paging Loginc start
     const[totalPages, setTotalPages] = useState(0);
     const[currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 10;
@@ -25,6 +27,7 @@ let Home = () => {
             console.log("Postingを持って来ることを失敗");
         })
     }
+    // The End of paging Loginc start
 
     // useEffect : 関数型コンポーネントからside effectを処理するHook
     useEffect(() => {
@@ -63,6 +66,7 @@ let Home = () => {
             <h1 className={"home-title"}>一覧</h1>
             <div className={"posts-list"}>
                 {
+                    // 画面上の表示するリスト処理
                     // currentPosts.map(post => (
                     posts.map(post => (
                         <div key={post.id} className={"post-card"}>
