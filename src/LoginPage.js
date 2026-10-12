@@ -14,7 +14,9 @@ function LoginPage() {
         e.preventDefault();
         try {
             const res = await axios.post(
-                "http://localhost:8080/api/auth/login",
+                // "http://localhost:8080/api/auth/login"
+                "http://localhost:8080/login"
+                ,
                 { username, password },
                 { withCredentials: true }, // HttpOnly Cookie포함
             );

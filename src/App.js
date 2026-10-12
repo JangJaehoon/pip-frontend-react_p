@@ -5,6 +5,7 @@ import CreatePost from "./CreatePost";
 import PostDetail from "./PostDetail";
 import PostEdit from "./PostEdit";
 import Home from "./Home";
+import Signup from "./SignupPage.js";
 import Login from "./LoginPage.js";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
+            <Route path={"/signup"} element={<Signup/>}/>
             <Route path={"/login"} element={<Login/>}/>
             <Route path={"/home"} element={<Home/>}/>
             <Route path={"/create"} element={<CreatePost/>}/>
