@@ -1,13 +1,25 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
 
 function SignupPage() {
-    const [username, setUsernae] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
 
     const handleSignup = async (e) => {
+        e.preventDefault();
+        try{
+            await axios.post("http://localhost:8080/signup",
+                {username, password}
+            );
+            alert("会員加入成功");
+            navigate("/login");
+        }catch(err){
+            alert("会員加入失敗:" + (err.response?.data || err.message) );
+        }
+
 
     }
 
@@ -21,7 +33,8 @@ function SignupPage() {
                     value={username}
                     onChange=
                         {(e)=>
-                            setUsernae(e.target.value)}
+                            setUsername(e.target.value)}
+                    // required
                     />
                 <input
                     type="password"
@@ -29,6 +42,7 @@ function SignupPage() {
                     value={password}
                     onChange={(e)=>
                             setPassword(e.target.value)}
+                    // required
                     />
 
                 <button type="submit">会員加入</button>
