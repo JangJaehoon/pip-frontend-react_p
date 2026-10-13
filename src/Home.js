@@ -7,8 +7,11 @@ let Home = () => {
 
     const[posts, setPosts] = useState([]);
 
-     const [keyword, setKeyword] = useState("");
-    // const [searchKeyword, setSearchKeyword] = useState("");
+    // 검색 키워드 상태 관리
+    const [keyword, setKeyword] = useState("");
+    // 입력 필드용
+    const [searchKeyword, setSearchKeyword] = useState("");
+    // 실제 API 요청용
     // 検索ロジックに使う常数 (※ 変数は let 変数名 )
 
     // The start of paging Logic
@@ -20,7 +23,7 @@ let Home = () => {
         axios.get(`${process.env.REACT_APP_API_URL}/posts`,{
             // env.REACT_APP_API_URL : http://localhost:8080/api
             params:{
-                // keyword: keyword, // 検索キーワード
+                keyword: keyword, // 検索キーワード
                 page:currentPage - 1,
                 size:postsPerPage
             }
@@ -37,7 +40,7 @@ let Home = () => {
     // useEffect : 関数型コンポーネントからside effectを処理するHook
     useEffect(() => {
         getPostList(); // ページィング処理関数
-    },[currentPage]); // [currentPage, keyword]);　
+    },[currentPage, keyword]); // [currentPage, keyword]);　
     // 現在のページを表示, 検索キーワードkeyword 追加
 
     const pageNumbers = Array.from(
@@ -46,10 +49,28 @@ let Home = () => {
     );
 
     // The start of 検索ボタンのイベント
-    // const handleSearch = () => {
-    //     setCurrentPage(1);
-    //     setKeyword(e.target.value);
-    // }
+    const handleSearch = () => {
+        setCurrentPage(1);
+        axios.get(
+            `${process.env.REACT_APP_API_URL}/posts`,
+            {
+                params:{
+                    keyword: keyword,
+                    page: 0,
+                    size: postsPerPage
+                }
+            }
+        )
+            .then(res => {
+
+                setPosts(res.data.content);
+                setTotalPages(res.data.totalPages);
+
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     // The end of 検索ボタンのイベント
 
     // 検索キーワードに従って、filteringされたデータを持って来る。
@@ -86,11 +107,14 @@ let Home = () => {
             <h1 className={"home-title"}>ユーザー 一覧</h1>
 
             {/*# The start of 検索キーワード 入力欄*/}
+            <div className={"search-container"}>
             <input
                 type="text"
                 placeholder="検索キーワードを入力してください。"
                 value={keyword}
-                // onChange={handleSearch}
+                onChange={(e)=> setKeyword(e.target.value)}
+                // onKeyDown={(e)=> e.key === "Enter" ? handleSearch() : handlePageChange(e)}
+                onKeyDown={(e)=> e.key === 'Enter' && handleSearch() }
                 style={{
                     width: '100%',
                     padding: '10px',
@@ -101,7 +125,8 @@ let Home = () => {
             />
             {/*# The end of 検索キーワード 入力欄*/}
 
-            {/*<button onClick={onSearch}>検索</button>*/}
+                {/*<button onClick={handleSearch}>検索</button>*/}
+            </div>
 
             <div className={"posts-list"}>
                 {
@@ -124,7 +149,8 @@ let Home = () => {
                 {
                     pageNumbers.map(
                         number => (
-                            <button key={number} className={`page-btn ${number === currentPage ? 'active' : ''}`}
+                            <button key={number}
+                                    className={`page-btn ${number === currentPage ? 'active' : ''}`}
                             onClick={()=>{
                                 handlePageChange(number);
                             }} >
