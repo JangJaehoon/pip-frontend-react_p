@@ -112,3 +112,7 @@
 .create-link:hover {
     background: #0056b3;
 }
+
+.form-group {
+    margin-bottom: 20px;
+}
